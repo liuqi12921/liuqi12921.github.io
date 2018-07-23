@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  
+  <title>对Java代理模式的理解 | Hitomi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java的代理分为静态代理和动态代理。静态代理模式的构成：1.一个共同的接口或抽象类 2.真实的类 3.代理类其中真实类和代理类都实现了那个共同的接口，代理类内部有一个对真实类对象的引用，用户使用代理类时，实际会调用真实对象的对应方法。静态代理的局限在于 1.有一个真实类就要构造一个代理类，类的数量会急剧增加。2. 在编写代码时若没有确定需要被代理的真实类，是不能编写代理类的。动态代理：是为了解决">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对Java代理模式的理解">
+<meta property="og:url" content="https://liuqi12921.github.io/2017/10/02/对Java代理模式的理解/index.html">
+<meta property="og:site_name" content="Hitomi">
+<meta property="og:description" content="Java的代理分为静态代理和动态代理。静态代理模式的构成：1.一个共同的接口或抽象类 2.真实的类 3.代理类其中真实类和代理类都实现了那个共同的接口，代理类内部有一个对真实类对象的引用，用户使用代理类时，实际会调用真实对象的对应方法。静态代理的局限在于 1.有一个真实类就要构造一个代理类，类的数量会急剧增加。2. 在编写代码时若没有确定需要被代理的真实类，是不能编写代理类的。动态代理：是为了解决">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-07-23T05:52:16.133Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对Java代理模式的理解">
+<meta name="twitter:description" content="Java的代理分为静态代理和动态代理。静态代理模式的构成：1.一个共同的接口或抽象类 2.真实的类 3.代理类其中真实类和代理类都实现了那个共同的接口，代理类内部有一个对真实类对象的引用，用户使用代理类时，实际会调用真实对象的对应方法。静态代理的局限在于 1.有一个真实类就要构造一个代理类，类的数量会急剧增加。2. 在编写代码时若没有确定需要被代理的真实类，是不能编写代理类的。动态代理：是为了解决">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+  <link rel="stylesheet" href="/css/donate.css">
+  
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  
+</head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-对Java代理模式的理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+    <div class="mobile-nav">
+      <h1 class="nickname">Hitomi</h1>
+      <a id="menu">
+        &#9776; Menu
+      </a>
+    </div>
+    
+        <nav id="main-nav" class="main-nav nav-left">
+    
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      对Java代理模式的理解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>Java的代理分为静态代理和动态代理。<br>静态代理模式的构成：1.一个共同的接口或抽象类 2.真实的类 3.代理类<br>其中真实类和代理类都实现了那个共同的接口，代理类内部有一个对真实类对象的引用，用户使用代理类时，实际会调用真实对象的对应方法。<br>静态代理的局限在于 1.有一个真实类就要构造一个代理类，类的数量会急剧增加。2. 在编写代码时若没有确定需要被代理的真实类，是不能编写代理类的。<br>动态代理：是为了解决静态代理的缺陷而出现的。它的使用方法是这样的：<br>用户需要使用<code>Java</code>提供的<code>Proxy</code>类动态创建一个代理类，并使用这个代理类实现相应功能。对于一个代理类来说，首先它需要知道它要代理的类是什么，<code>Proxy</code>类的<code>newProxyInstance()</code>方法中的参数好像并没有提供这样的信息，其实这个信息存在于它的第三个参数<code>InvocationHandler</code>里面。<code>InvocationHandler</code>负责实际的方法调用，在实现了<code>InvocationHandler</code>接口的类里一定有一个成员变量来存储真实类的实例，而对真实类方法的调用则是通过<code>invoke</code>方法里的<code>method</code>参数来实现的。形如这样的形式：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  System.out.println(<span class="string">"before calling: "</span> + method);</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">null</span> != args) &#123;</span><br><span class="line">    <span class="keyword">for</span> (Object obj : args) &#123;</span><br><span class="line">      System.out.println(obj);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  Object object = method.invoke(proxyObj, args);</span><br><span class="line">  System.out.println(<span class="string">"after calling: "</span> + method);</span><br><span class="line">  <span class="keyword">return</span> object;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里<code>InvacationHandler</code>就是真实类和代理类之间的桥梁，代理类的对象在动态生成时只声称自己实现了某一组接口，这组接口应和真实类所实现的接口一致，这是由代理的性质所决定的。真实类被封装在了<code>handler</code>里，<code>handler</code>的<code>invoke</code>方法利用<code>Java</code>的反射机制就可以调用真实类的方法。动态代理具有很强的灵活性。首先，我们不再特意为某一个类创建代理类，代理类是动态生成的，同时对于只有在运行时才能确定真实类的场合，可以在运行时由<code>handler</code>来动态获取真实类解决。 </p>
+
+      
+      <div id="donate" class="donate">
+        <a id="github" href="https://github.com/liuqi12921" target="_blank" class="pos-f tr3" title="Github"></a>
+	      <div id="DonateText" class="tr3">Donate</div>
+	      <ul id="donateBox" class="list pos-f tr3">
+		      <li id="PayPal"><a href="" target="_blank">PayPal</a></li>
+		      <li id="BTC" data-footnote="Copy addres and show QRCode"><button id="BTCBn"  data-clipboard-target="#btc-key" alt="Copy to clipboard">Bitcoin</button></li>
+		      <li id="AliPay">AliPay</li>
+		      <li id="WeChat">WeChat</li>
+	      </ul>
+	      <div id="QRBox" class="pos-f left-100">
+		      <div id="BTCQR" class="MainBox" style="background-image: url()"></div>
+		      <div id="AliPayQR" class="MainBox" style="background-image: url()"></div>
+		      <div id="WeChatQR" class="MainBox" style="background-image: url()"></div>
+	      </div>
+	      <!-- Bitcoin 账号 -->
+	      <input id="btc-key" type="text" value="" readonly="readonly">
+      </div>
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/10/02/对Java代理模式的理解/" class="article-date">
+  <time datetime="2017-10-02T12:36:47.000Z" itemprop="datePublished">2017-10-02</time>
+</a>
+
+        </li>
+        
+          <li>
+            <span class="label">Category:</span>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>/<a class="article-category-link" href="/categories/java/编程语言/">编程语言</a>
+  </div>
+
+
+          </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+        <ul class="footer-links">
+          
+            <li><a href="/archives/"><span class="fa fa-book"></span></a></li>
+          
+            <li><a href="https://github.com/geekplux/hexo-theme-typing"><span class="fa fa-globe"></span></a></li>
+          
+            <li><a href="https://twitter.com/"><span class="fa fa-twitter"></span></a></li>
+          
+            <li><a href="https://github.com/"><span class="fa fa-github-alt"></span></a></li>
+          
+            <li><a href="https://www.youtube.com/"><span class="fa fa-youtube-play"></span></a></li>
+          
+            <li><a href="https://stackoverflow.com/"><span class="fa fa-stack-overflow"></span></a></li>
+          
+            <li><a href="https://plus.google.com/"><span class="fa fa-google-plus"></span></a></li>
+          
+            <li><a href="/atom.xml"><span class="fa fa-rss"></span></a></li>
+          
+        </ul>
+	    
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Post</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
