@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[对Java代理模式的理解]]></title>
+    <url>%2F2017%2F10%2F02%2F%E5%AF%B9Java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%90%86%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[静态代理和动态代理静态代理模式的构成 一个共同的接口或抽象类 真实的类 代理类 其中真实类和代理类都实现了一个共同的接口，代理类内部有一个对真实类对象的引用，用户使用代理类时，实际会调用真实对象的对应方法。 静态代理的局限 有一个真实类就要构造一个代理类，类的数量会急剧增加 在编写代码时若没有确定需要被代理的真实类，是不能编写代理类的。 动态代理用户需要使用Java提供的Proxy类动态创建一个代理类，并使用这个代理类实现相应功能。对于一个代理类来说，首先它需要知道它要代理的类是什么，Proxy类的newProxyInstance()方法中的参数好像并没有提供这样的信息，其实这个信息存在于它的第三个参数InvocationHandler里面。InvocationHandler负责实际的方法调用，在实现了InvocationHandler接口的类里一定有一个成员变量来存储真实类的实例，而对真实类方法的调用则是通过invoke方法里的method参数来实现的。形如这样的形式： InvocationHandler.java12345678910111213@Overridepublic Object invoke(Object proxy, Method method, Object[] args) throws Throwable&#123; System.out.println("before calling: " + method); if (null != args) &#123; for (Object obj : args) &#123; System.out.println(obj); &#125; &#125; Object object = method.invoke(proxyObj, args); System.out.println("after calling: " + method); return object;&#125; 这里InvacationHandler就是真实类和代理类之间的桥梁，代理类的对象在动态生成时只声称自己实现了某一组接口，这组接口应和真实类所实现的接口一致，这是由代理的性质所决定的。真实类被封装在了handler里，handler的invoke方法利用Java的反射机制就可以调用真实类的方法。动态代理具有很强的灵活性。首先，我们不再特意为某一个类创建代理类，代理类是动态生成的，同时对于只有在运行时才能确定真实类的场合，可以在运行时由handler来动态获取真实类解决。]]></content>
+      <categories>
+        <category>java</category>
+        <category>编程语言</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+</search>
