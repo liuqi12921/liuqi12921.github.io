@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liuqi12921.github.io/"/>
-  <updated>2018-07-25T03:37:53.510Z</updated>
+  <updated>2018-07-27T11:56:30.687Z</updated>
   <id>https://liuqi12921.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用SpringMVC进行图片上传</title>
+    <link href="https://liuqi12921.github.io/2018/07/27/%E4%BD%BF%E7%94%A8SpringMVC%E8%BF%9B%E8%A1%8C%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/"/>
+    <id>https://liuqi12921.github.io/2018/07/27/使用SpringMVC进行图片上传/</id>
+    <published>2018-07-27T11:44:03.000Z</published>
+    <updated>2018-07-27T11:56:30.687Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/2018/07/27/使用SpringMVC进行图片上传/spring.jpg" alt=""></p><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/save"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">save</span><span class="params">(Blogger blogger, MultipartFile imageFile,  HttpServletResponse response, HttpServletRequest request)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (!imageFile.isEmpty()) &#123;</span><br><span class="line">String filePath = request.getSession().getServletContext().getRealPath(<span class="string">"/"</span>);</span><br><span class="line">String imageName = DateUtil.getCurrentDateStr() + <span class="string">"."</span> + imageFile.getOriginalFilename().split(<span class="string">"\\."</span>)[<span class="number">1</span>];</span><br><span class="line">imageFile.transferTo(<span class="keyword">new</span> File(filePath + <span class="string">"static/userImages/"</span> + imageName)); <span class="comment">// 保存文件到相应目录</span></span><br><span class="line">blogger.setImageName(imageName);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> resultTotal = bloggerService.update(blogger);</span><br><span class="line">StringBuffer result = <span class="keyword">new</span> StringBuffer();</span><br><span class="line"><span class="keyword">if</span> (resultTotal &gt; <span class="number">0</span>) &#123;</span><br><span class="line">result.append(<span class="string">"&lt;script language='javascript'&gt;alert('修改成功!')&lt;/script&gt;"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">result.append(<span class="string">"&lt;script language='javascript'&gt;alert('修改失败!')&lt;/script&gt;"</span>);</span><br><span class="line">&#125;</span><br><span class="line">ResponseUtil.write(response, result);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>利用<code>Spring MVC</code>进行图片的上传使用的是<code>MultipartFile</code>这个类</p><p>对应的前端代码如下</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">id</span>=<span class="string">"imageFile"</span> <span class="attr">name</span>=<span class="string">"imageFile"</span>/&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/2018/07/27/使用SpringMVC进行图片上传/spring.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="代码片段" scheme="https://liuqi12921.github.io/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
+    
+    
+      <category term="spring mvc" scheme="https://liuqi12921.github.io/tags/spring-mvc/"/>
+    
+  </entry>
   
   <entry>
     <title>Install Python3 on Windows 10</title>

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[使用SpringMVC进行图片上传]]></title>
+    <url>%2F2018%2F07%2F27%2F%E4%BD%BF%E7%94%A8SpringMVC%E8%BF%9B%E8%A1%8C%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%2F</url>
+    <content type="text"><![CDATA[12345678910111213141516171819@RequestMapping("/save") public String save(Blogger blogger, MultipartFile imageFile, HttpServletResponse response, HttpServletRequest request) throws Exception &#123; if (!imageFile.isEmpty()) &#123; String filePath = request.getSession().getServletContext().getRealPath("/"); String imageName = DateUtil.getCurrentDateStr() + "." + imageFile.getOriginalFilename().split("\\.")[1]; imageFile.transferTo(new File(filePath + "static/userImages/" + imageName)); // 保存文件到相应目录 blogger.setImageName(imageName); &#125; int resultTotal = bloggerService.update(blogger); StringBuffer result = new StringBuffer(); if (resultTotal &gt; 0) &#123; result.append("&lt;script language='javascript'&gt;alert('修改成功!')&lt;/script&gt;"); &#125; else &#123; result.append("&lt;script language='javascript'&gt;alert('修改失败!')&lt;/script&gt;"); &#125; ResponseUtil.write(response, result); return null; &#125; 利用Spring MVC进行图片的上传使用的是MultipartFile这个类 对应的前端代码如下 1&lt;input type="file" id="imageFile" name="imageFile"/&gt;]]></content>
+      <categories>
+        <category>代码片段</category>
+      </categories>
+      <tags>
+        <tag>spring mvc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Install Python3 on Windows 10]]></title>
     <url>%2F2018%2F07%2F25%2FInstall-Python3-on-Windows-10%2F</url>
     <content type="text"><![CDATA[Python3的安装与下载 官网下载Python3 我这里选择Windows64位版 下载完成后得到如下安装文件 双击进行安装 验证Python是否正确安装 按Windows + x在出现的选项中选择 Windows PowerShell 键入python -V查看python的版本信息 键入pip freeze查看python包管理器是否安装成功 修改Windows PowerShell解除脚本运行限制 按Windows + x在出现的选项中选择 Windows PowerShell(管理员) 输入Set-ExecutionPolicy Unrestricted并输入yes确认]]></content>
