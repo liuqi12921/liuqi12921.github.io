@@ -136,17 +136,18 @@
 
 
 
+<meta name="description" content="Spring Boot 的事务\表单验证\AOP">
 <meta name="keywords" content="spring,spring boot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Boot(03)">
 <meta property="og:url" content="https://liuqi12921.github.io/2018/08/01/Spring-Boot-03/index.html">
 <meta property="og:site_name" content="Hitomi">
+<meta property="og:description" content="Spring Boot 的事务\表单验证\AOP">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://liuqi12921.github.io/2018/08/01/Spring-Boot-03/spring.jpg">
-<meta property="og:updated_time" content="2018-08-01T09:27:36.880Z">
+<meta property="og:updated_time" content="2018-08-02T08:20:50.394Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot(03)">
-<meta name="twitter:image" content="https://liuqi12921.github.io/2018/08/01/Spring-Boot-03/spring.jpg">
+<meta name="twitter:description" content="Spring Boot 的事务\表单验证\AOP">
 
 
 
@@ -451,9 +452,8 @@
       
 
       
-        <p><img src="/2018/08/01/Spring-Boot-03/spring.jpg" alt=""></p>
-<a id="more"></a>
-<h3 id="Spring-Boot-的事务-表单验证-AOP"><a href="#Spring-Boot-的事务-表单验证-AOP" class="headerlink" title="Spring Boot 的事务\表单验证\AOP"></a>Spring Boot 的事务\表单验证\AOP</h3><h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><p>在需要添加事务的方法上添加<code>@Transactional</code>注解即可</p>
+        <h3 id="Spring-Boot-的事务-表单验证-AOP"><a href="#Spring-Boot-的事务-表单验证-AOP" class="headerlink" title="Spring Boot 的事务\表单验证\AOP"></a>Spring Boot 的事务\表单验证\AOP</h3><a id="more"></a>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><p>在需要添加事务的方法上添加<code>@Transactional</code>注解即可</p>
 <p>注意这个注解的全限定名为<code>javax.transaction.Transactional</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transfer</span><span class="params">(<span class="keyword">int</span> fromUser, <span class="keyword">int</span> toUser, <span class="keyword">float</span> money)</span> </span>&#123;</span><br><span class="line">    Account fromAccount = accountDao.getOne(fromUser);</span><br><span class="line">    fromAccount.setBalance(fromAccount.getBalance() - money);</span><br><span class="line"></span><br><span class="line">    Account toAccount = accountDao.getOne(toUser);</span><br><span class="line">    toAccount.setBalance(toAccount.getBalance() + money);</span><br><span class="line"></span><br><span class="line">    accountDao.save(fromAccount);</span><br><span class="line">    <span class="keyword">int</span> zero = <span class="number">1</span>/ <span class="number">0</span>; <span class="comment">// 此处会有异常，事务会回滚</span></span><br><span class="line">    accountDao.save(toAccount);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h4><p>设置验证条件</p>
@@ -503,6 +503,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/01/进销存管理系统开发记录-01/" rel="prev" title="进销存管理系统开发记录(01)">
+                进销存管理系统开发记录(01) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -583,7 +587,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -605,7 +609,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -708,7 +712,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">4.7k</span>
+    <span title="Site words total count">5.0k</span>
   
 </div>
 

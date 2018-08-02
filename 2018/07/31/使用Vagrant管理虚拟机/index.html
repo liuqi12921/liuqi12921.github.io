@@ -136,17 +136,18 @@
 
 
 
+<meta name="description" content="软件版本和参考资源初次接触Vagrant，了解有限，但还是能感受到它带来的好处。最大的益处在于使得配置软件开发环境异常简单，再也不用担心把系统搞乱了。 这里主要参考Laravel框架Homestead的安装和设置，宿主机是Windows 10家庭版，虚拟机使用VirtualBox-5.2.16-123759-Win.exe，Vagrant使用vagrant_2.1.2_x86_64.msi。">
 <meta name="keywords" content="Laravel,Vagrant,虚拟机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Vagrant管理虚拟机">
 <meta property="og:url" content="https://liuqi12921.github.io/2018/07/31/使用Vagrant管理虚拟机/index.html">
 <meta property="og:site_name" content="Hitomi">
+<meta property="og:description" content="软件版本和参考资源初次接触Vagrant，了解有限，但还是能感受到它带来的好处。最大的益处在于使得配置软件开发环境异常简单，再也不用担心把系统搞乱了。 这里主要参考Laravel框架Homestead的安装和设置，宿主机是Windows 10家庭版，虚拟机使用VirtualBox-5.2.16-123759-Win.exe，Vagrant使用vagrant_2.1.2_x86_64.msi。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://liuqi12921.github.io/2018/07/31/使用Vagrant管理虚拟机/vagrant.png">
-<meta property="og:updated_time" content="2018-07-31T10:20:56.237Z">
+<meta property="og:updated_time" content="2018-08-02T08:21:26.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Vagrant管理虚拟机">
-<meta name="twitter:image" content="https://liuqi12921.github.io/2018/07/31/使用Vagrant管理虚拟机/vagrant.png">
+<meta name="twitter:description" content="软件版本和参考资源初次接触Vagrant，了解有限，但还是能感受到它带来的好处。最大的益处在于使得配置软件开发环境异常简单，再也不用担心把系统搞乱了。 这里主要参考Laravel框架Homestead的安装和设置，宿主机是Windows 10家庭版，虚拟机使用VirtualBox-5.2.16-123759-Win.exe，Vagrant使用vagrant_2.1.2_x86_64.msi。">
 
 
 
@@ -451,10 +452,9 @@
       
 
       
-        <p><img src="/2018/07/31/使用Vagrant管理虚拟机/vagrant.png" alt=""></p>
-<a id="more"></a>
-<h3 id="软件版本和参考资源"><a href="#软件版本和参考资源" class="headerlink" title="软件版本和参考资源"></a>软件版本和参考资源</h3><p>初次接触<code>Vagrant</code>，了解有限，但还是能感受到它带来的好处。最大的益处在于使得配置软件开发环境异常简单，再也不用担心把系统搞乱了。</p>
+        <h3 id="软件版本和参考资源"><a href="#软件版本和参考资源" class="headerlink" title="软件版本和参考资源"></a>软件版本和参考资源</h3><p>初次接触<code>Vagrant</code>，了解有限，但还是能感受到它带来的好处。最大的益处在于使得配置软件开发环境异常简单，再也不用担心把系统搞乱了。</p>
 <p>这里主要参考<a href="https://laravel.com/docs/5.6/homestead" target="_blank" rel="noopener">Laravel框架Homestead的安装和设置</a>，宿主机是<code>Windows 10家庭版</code>，虚拟机使用<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener">VirtualBox-5.2.16-123759-Win.exe</a>，Vagrant使用<a href="https://www.vagrantup.com/downloads.html" target="_blank" rel="noopener">vagrant_2.1.2_x86_64.msi</a>。</p>
+<a id="more"></a>
 <h3 id="安装-Homestead-Vagrant-Box"><a href="#安装-Homestead-Vagrant-Box" class="headerlink" title="安装 Homestead Vagrant Box"></a>安装 Homestead Vagrant Box</h3><p>使用<code>vagrant box add laravel/homestead</code>命令添加<code>laravel/homestead</code>到<code>Vagrant</code>。<code>Vagrant Box</code>默认的保存路径为<code>C:\Users\userName\.vagrant.d\</code>，可以通过设置环境变量更改此位置。在<code>Windows</code>下为<code>setx VAGRANT_HOME &quot;E:\your\path&quot;</code>。这里的<code>Vagrant Box</code>就是虚拟机映像文件。</p>
 <h3 id="安装Homestead"><a href="#安装Homestead" class="headerlink" title="安装Homestead"></a>安装Homestead</h3><p>通过<code>git clone https://github.com/laravel/homestead.git ~/Homestead</code>下载到指定目录，我本机的目录为<code>E:\Homestead</code>，完成后通过<code>init.bat</code>生成配置文件<code>Homestead.yaml</code>。</p>
 <h3 id="配置Homestead虚拟机"><a href="#配置Homestead虚拟机" class="headerlink" title="配置Homestead虚拟机"></a>配置Homestead虚拟机</h3><h4 id="配置文件夹同步"><a href="#配置文件夹同步" class="headerlink" title="配置文件夹同步"></a>配置文件夹同步</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">folders:</span></span><br><span class="line"><span class="attr">    - map:</span> <span class="attr">E:/web/homestead/code</span></span><br><span class="line"><span class="attr">      to:</span> <span class="string">/home/vagrant/code</span></span><br></pre></td></tr></table></figure>
@@ -595,7 +595,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -617,7 +617,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -720,7 +720,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">4.7k</span>
+    <span title="Site words total count">5.0k</span>
   
 </div>
 

@@ -136,17 +136,18 @@
 
 
 
+<meta name="description" content="12345678910111213141516171819   @RequestMapping(&quot;/save&quot;)public String save(Blogger blogger, MultipartFile imageFile,  HttpServletResponse response, HttpServletRequest request) throws Exception &amp;#123;">
 <meta name="keywords" content="spring mvc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用SpringMVC进行图片上传">
 <meta property="og:url" content="https://liuqi12921.github.io/2018/07/27/使用SpringMVC进行图片上传/index.html">
 <meta property="og:site_name" content="Hitomi">
+<meta property="og:description" content="12345678910111213141516171819   @RequestMapping(&quot;/save&quot;)public String save(Blogger blogger, MultipartFile imageFile,  HttpServletResponse response, HttpServletRequest request) throws Exception &amp;#123;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://liuqi12921.github.io/2018/07/27/使用SpringMVC进行图片上传/spring.jpg">
-<meta property="og:updated_time" content="2018-07-27T11:59:08.623Z">
+<meta property="og:updated_time" content="2018-08-02T08:13:02.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用SpringMVC进行图片上传">
-<meta name="twitter:image" content="https://liuqi12921.github.io/2018/07/27/使用SpringMVC进行图片上传/spring.jpg">
+<meta name="twitter:description" content="12345678910111213141516171819   @RequestMapping(&quot;/save&quot;)public String save(Blogger blogger, MultipartFile imageFile,  HttpServletResponse response, HttpServletRequest request) throws Exception &amp;#123;">
 
 
 
@@ -473,8 +474,7 @@
       
 
       
-        <p><img src="/2018/07/27/使用SpringMVC进行图片上传/spring.jpg" alt=""></p>
-<a id="more"></a>
+        <a id="more"></a>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">   <span class="meta">@RequestMapping</span>(<span class="string">"/save"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">save</span><span class="params">(Blogger blogger, MultipartFile imageFile,  HttpServletResponse response, HttpServletRequest request)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!imageFile.isEmpty()) &#123;</span><br><span class="line">		String filePath = request.getSession().getServletContext().getRealPath(<span class="string">"/"</span>);</span><br><span class="line">		String imageName = DateUtil.getCurrentDateStr() + <span class="string">"."</span> + imageFile.getOriginalFilename().split(<span class="string">"\\."</span>)[<span class="number">1</span>];</span><br><span class="line">		imageFile.transferTo(<span class="keyword">new</span> File(filePath + <span class="string">"static/userImages/"</span> + imageName)); <span class="comment">// 保存文件到相应目录</span></span><br><span class="line">		blogger.setImageName(imageName);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> resultTotal = bloggerService.update(blogger);</span><br><span class="line">	StringBuffer result = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">	<span class="keyword">if</span> (resultTotal &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		result.append(<span class="string">"&lt;script language='javascript'&gt;alert('修改成功!')&lt;/script&gt;"</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		result.append(<span class="string">"&lt;script language='javascript'&gt;alert('修改失败!')&lt;/script&gt;"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	ResponseUtil.write(response, result);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>利用<code>Spring MVC</code>进行图片的上传使用的是<code>MultipartFile</code>这个类</p>
 <p>对应的前端代码如下</p>
@@ -593,7 +593,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -615,7 +615,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -702,7 +702,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">4.7k</span>
+    <span title="Site words total count">5.0k</span>
   
 </div>
 
